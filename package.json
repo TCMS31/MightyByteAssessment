@@ -1,0 +1,46 @@
+{
+  "name": "ride-share-backend",
+  "version": "1.0.0",
+  "description": "Real-time driver location tracking backend (MightyByte take-home): REST + Socket.IO",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "NODE_ENV=test node --test --test-reporter=spec \"tests/*.test.js\"",
+    "test:watch": "NODE_ENV=test node --test --watch \"tests/*.test.js\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.js\" \"tests/**/*.js\" \"frontend/src/**/*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\" \"tests/**/*.js\" \"frontend/src/**/*.js\""
+  },
+  "keywords": [
+    "ride-sharing",
+    "real-time",
+    "websockets",
+    "socket.io",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "eslint": "^9.12.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^15.11.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.3.3",
+    "socket.io-client": "^4.7.4",
+    "supertest": "^7.0.0"
+  }
+}
