@@ -1,0 +1,32 @@
+# Dependencies are installed inside the image.
+node_modules
+frontend/node_modules
+project_venv
+
+# Build output and local artefacts.
+frontend/build
+dist
+coverage
+.nyc_output
+
+# Tests, docs and tooling are not needed at runtime.
+tests
+docs
+eslint.config.js
+.prettierrc.json
+.prettierignore
+
+# Local environment and VCS metadata.
+.env
+.env.*
+!.env.example
+.git
+.gitignore
+.github
+
+# Editor and OS noise.
+.DS_Store
+.idea
+.vscode
+*.log
+*.swp

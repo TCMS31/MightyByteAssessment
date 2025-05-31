@@ -1,0 +1,32 @@
+services:
+  api:
+    build:
+      context: .
+      target: runtime
+    image: ride-share-backend:local
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-3001}:3001"
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      # Required in production. Compose refuses to start without it.
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in your .env before starting}
+      JWT_EXPIRY_SECONDS: ${JWT_EXPIRY_SECONDS:-300}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      DRIVER_STALE_AFTER_MS: ${DRIVER_STALE_AFTER_MS:-600000}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "require('http').get('http://127.0.0.1:3001/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    # State lives in process memory, so a single replica is the only correct
+    # scaling story today. See "Limitations" in the README.
+    deploy:
+      replicas: 1
